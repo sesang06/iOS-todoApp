@@ -10,7 +10,6 @@
 		0206531AEAFB99CB16FB714A /* Pods_iOS_todoAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BB21FF9DEC37AA2211A431 /* Pods_iOS_todoAppTests.framework */; };
 		06CCE1EA21AACA8D00A63088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE1E921AACA8D00A63088 /* AppDelegate.swift */; };
 		06CCE1EC21AACA8D00A63088 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE1EB21AACA8D00A63088 /* ViewController.swift */; };
-		06CCE1EF21AACA8D00A63088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CCE1ED21AACA8D00A63088 /* Main.storyboard */; };
 		06CCE1F221AACA8D00A63088 /* iOS_todoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE1F021AACA8D00A63088 /* iOS_todoApp.xcdatamodeld */; };
 		06CCE1F421AACA8F00A63088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06CCE1F321AACA8F00A63088 /* Assets.xcassets */; };
 		06CCE1F721AACA8F00A63088 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CCE1F521AACA8F00A63088 /* LaunchScreen.storyboard */; };
@@ -41,7 +40,6 @@
 		06CCE1E621AACA8D00A63088 /* iOS-todoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-todoApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CCE1E921AACA8D00A63088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06CCE1EB21AACA8D00A63088 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		06CCE1EE21AACA8D00A63088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06CCE1F121AACA8D00A63088 /* iOS_todoApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOS_todoApp.xcdatamodel; sourceTree = "<group>"; };
 		06CCE1F321AACA8F00A63088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06CCE1F621AACA8F00A63088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 			children = (
 				06CCE1E921AACA8D00A63088 /* AppDelegate.swift */,
 				06CCE1EB21AACA8D00A63088 /* ViewController.swift */,
-				06CCE1ED21AACA8D00A63088 /* Main.storyboard */,
 				06CCE1F321AACA8F00A63088 /* Assets.xcassets */,
 				06CCE1F521AACA8F00A63088 /* LaunchScreen.storyboard */,
 				06CCE1F821AACA8F00A63088 /* Info.plist */,
@@ -280,7 +277,6 @@
 			files = (
 				06CCE1F721AACA8F00A63088 /* LaunchScreen.storyboard in Resources */,
 				06CCE1F421AACA8F00A63088 /* Assets.xcassets in Resources */,
-				06CCE1EF21AACA8D00A63088 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,14 +490,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		06CCE1ED21AACA8D00A63088 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06CCE1EE21AACA8D00A63088 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		06CCE1F521AACA8F00A63088 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -635,7 +623,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7GDRWN9V7N;
 				INFOPLIST_FILE = "iOS-todoApp/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,7 +643,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7GDRWN9V7N;
 				INFOPLIST_FILE = "iOS-todoApp/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
