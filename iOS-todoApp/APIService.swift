@@ -93,6 +93,9 @@ class ApiService {
             }
         }
     }
+//    func test(apiRequest : ApiRequest) {
+//        self.get(apiRequest: apiRequest).subscribe(<#T##observer: ObserverType##ObserverType#>)
+//    }
     /**
      searchController.searchBar.rx.text.asObservable()
      .map { ($0 ?? "").lowercased() }
