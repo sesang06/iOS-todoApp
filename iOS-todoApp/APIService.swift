@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Alamofire
 public enum RequestType : String{
     case GET, POST
 }
@@ -59,6 +60,36 @@ class ApiService {
             task.resume()
             return Disposables.create {
                 task.cancel()
+            }
+        }
+    }
+    /**
+       Alamofire 로 짜기
+     **/
+    func get<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
+        return Observable<T>.create { observer in
+            let request = apiRequest.request(with: self.baseURL)
+            let dataRequest = Alamofire.request(request).responseData{
+                response in
+                
+                switch response.result {
+                case .success(let data) :
+                    do {
+                        let model : T = try JSONDecoder().decode(T.self, from: data)
+                        observer.onNext(model)
+                    } catch let error {
+                        observer.onError(error)
+                    }
+                    case .failure(let error):
+                    observer.onError(error)
+                    
+                }
+                observer.onCompleted()
+                
+                
+            }
+            return Disposables.create {
+                dataRequest.cancel()
             }
         }
     }
