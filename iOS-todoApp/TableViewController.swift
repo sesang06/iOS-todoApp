@@ -68,9 +68,10 @@ class TableViewController : UITableViewController {
     }
     private func setupTableViewBinding(){
         viewModel.dataSource
-            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: UITableViewCell.self)) {  row, element, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier)) {  row, element, cell in
                 cell.textLabel?.text = "\(element) \(row)"
             }
         .disposed(by: disposeBag)
+        
     }
 }
