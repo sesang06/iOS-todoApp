@@ -49,11 +49,18 @@ class EnglishCodeSentence : CodeSentence {
     var selectedCodeBlocks: Variable<[EnglishCodeBlock]>
     var candidateCodeBlocks: [EnglishCodeBlock]
     var answerCodeBlocks: [EnglishCodeBlock]
-    
+    private let disposeBag = DisposeBag()
     init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock]){
         self.answerCodeBlocks = answerCodeBlocks
         self.candidateCodeBlocks = candidateCodeBlocks
-        self.selectedCodeBlocks = Variable([])
+        self.selectedCodeBlocks = Variable([EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "a") ,
+                                            EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "a")])
+    }
+    convenience init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock], itemSelected : Driver<IndexPath>){
+        self.init(answerCodeBlocks: answerCodeBlocks, candidateCodeBlocks: candidateCodeBlocks)
+        itemSelected.drive(onNext: { [unowned self ] indexPath  in
+            self.selectedCodeBlocks.value.remove(at: indexPath.item)
+        }).disposed(by: disposeBag)
     }
 //    insertNewCandidateBlocks : Observer<
     
@@ -79,11 +86,17 @@ class EnglishCodeCollectionViewCell : UICollectionViewCell {
         }
     }
 }
-class EnglishCodeViewController : UIViewController {
+class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlowLayout {
     lazy var collectionView : UICollectionView = {
-        let cv = UICollectionView()
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .white
         return cv
     }()
+    
+    
+    
+    
     private let cellIdentifier = "Cell"
     private let disposeBag = DisposeBag()
     
@@ -94,7 +107,14 @@ class EnglishCodeViewController : UIViewController {
         setUpCollectionViewBinding()
     }
     func setUpViews(){
+        self.view.backgroundColor = UIColor.white
+        self.view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { (make) in
+            make.bottom.top.leading.trailing.equalTo(self.view)
+        }
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         collectionView.register(EnglishCodeCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        viewModel = EnglishCodeSentence.init(answerCodeBlocks: [], candidateCodeBlocks: [], itemSelected: collectionView.rx.itemSelected.asDriver())
     }
     func setUpCollectionViewBinding(){
         viewModel.selectedCodeBlocks.asObservable()
@@ -107,10 +127,6 @@ class EnglishCodeViewController : UIViewController {
                 
             }
         .disposed(by: disposeBag)
-        collectionView.rx.itemSelected
-            .subscribe(onNext:{ indexPath in
-            //your code
-            })
-            .disposed(by: disposeBag)
+       
     }
 }
