@@ -19,7 +19,6 @@ extension CodeBlock {
     }
 }
 
-
 protocol CodeSentence {
     associatedtype T : CodeBlock
     var selectedCodeBlocks : Variable<[T]> { get set }
@@ -45,16 +44,18 @@ class EnglishCodeBlock : CodeBlock {
     }
 }
 
-class EnglishCodeSentence : CodeSentence {
+class EnglishCodeSentenceViewModel : CodeSentence {
     var selectedCodeBlocks: Variable<[EnglishCodeBlock]>
     var candidateCodeBlocks: [EnglishCodeBlock]
     var answerCodeBlocks: [EnglishCodeBlock]
+    
+    
+    
     private let disposeBag = DisposeBag()
     init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock]){
         self.answerCodeBlocks = answerCodeBlocks
         self.candidateCodeBlocks = candidateCodeBlocks
-        self.selectedCodeBlocks = Variable([EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "a") ,
-                                            EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "a")])
+        self.selectedCodeBlocks = Variable(EnglishCodeSentenceViewModel.setUpExampleEnglishCodeBlocks())
     }
     convenience init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock], itemSelected : Driver<IndexPath>){
         self.init(answerCodeBlocks: answerCodeBlocks, candidateCodeBlocks: candidateCodeBlocks)
@@ -62,13 +63,17 @@ class EnglishCodeSentence : CodeSentence {
             self.selectedCodeBlocks.value.remove(at: indexPath.item)
         }).disposed(by: disposeBag)
     }
-//    insertNewCandidateBlocks : Observer<
     
+    static func setUpExampleEnglishCodeBlocks() -> [EnglishCodeBlock]{
+        return [EnglishCodeBlock.init(name: "I"), EnglishCodeBlock.init(name: "am") ,
+                EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "boy")]
+    }
 }
 
 class EnglishCodeCollectionViewCell : UICollectionViewCell {
     let codeLabel : UILabel = {
         let label = UILabel()
+        label.textAlignment = NSTextAlignment.center
         return label
     }()
     override init(frame: CGRect) {
@@ -100,11 +105,15 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
     private let cellIdentifier = "Cell"
     private let disposeBag = DisposeBag()
     
-    var viewModel : EnglishCodeSentence!
+    var viewModel : EnglishCodeSentenceViewModel!
     
     override func viewDidLoad() {
         setUpViews()
+        setUpViewModels()
         setUpCollectionViewBinding()
+    }
+    func setUpViewModels(){
+        viewModel = EnglishCodeSentenceViewModel.init(answerCodeBlocks: [], candidateCodeBlocks: [], itemSelected: collectionView.rx.itemSelected.asDriver())
     }
     func setUpViews(){
         self.view.backgroundColor = UIColor.white
@@ -114,7 +123,7 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
         }
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
         collectionView.register(EnglishCodeCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        viewModel = EnglishCodeSentence.init(answerCodeBlocks: [], candidateCodeBlocks: [], itemSelected: collectionView.rx.itemSelected.asDriver())
+        
     }
     func setUpCollectionViewBinding(){
         viewModel.selectedCodeBlocks.asObservable()
