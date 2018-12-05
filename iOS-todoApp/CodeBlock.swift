@@ -35,7 +35,7 @@ protocol CodeSentence {
 //
 //}
 
-class EnglishCodeBlock : CodeBlock {
+struct EnglishCodeBlock : CodeBlock, Hashable {
     var codeBlockName: String
     
     var codeBlockId: Int
@@ -68,18 +68,17 @@ extension EnglishCodeSentenceCollectionViewCellItem : IdentifiableType, Equatabl
     }
 }
 struct EnglishCodeSentenceCollectionViewSectionModel {
+    typealias Identity = Int
+    typealias Item = EnglishCodeSentenceCollectionViewCellItem
+    
     var index : Int
     var items : [Item]
 }
-extension EnglishCodeSentenceCollectionViewSectionModel : IdentifiableType, Equatable{
-    typealias Identity = Int
-    typealias Item = EnglishCodeSentenceCollectionViewCellItem
+extension EnglishCodeSentenceCollectionViewSectionModel : IdentifiableType{
     var identity : Identity {
        return index
     }
-    static func ==(lhs : EnglishCodeSentenceCollectionViewSectionModel, rhs: EnglishCodeSentenceCollectionViewSectionModel) -> Bool {
-        return lhs.identity == rhs.identity
-    }
+    
 }
 extension EnglishCodeSentenceCollectionViewSectionModel : AnimatableSectionModelType {
     
