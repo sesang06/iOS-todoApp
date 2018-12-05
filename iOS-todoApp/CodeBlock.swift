@@ -39,9 +39,9 @@ class EnglishCodeBlock : CodeBlock {
     var codeBlockName: String
     
     var codeBlockId: Int
-    init(name: String){
+    init(name: String, id : Int){
         self.codeBlockName = name
-        self.codeBlockId = 0
+        self.codeBlockId = id
     }
 }
 
@@ -49,32 +49,62 @@ enum EnglishCodeSentenceCollectionViewCellItem {
     case selected(cellViewModel : EnglishCodeBlock)
     case candidate(cellViewModel : EnglishCodeBlock, isSelected : Bool)
 }
-enum EnglishCodeSentenceCollectionViewSectionModel {
-    case selectedSection(items : [EnglishCodeSentenceCollectionViewCellItem])
-    case candidateSection(items : [EnglishCodeSentenceCollectionViewCellItem])
-}
-extension EnglishCodeSentenceCollectionViewSectionModel : SectionModelType {
+
+
+extension EnglishCodeSentenceCollectionViewCellItem : IdentifiableType, Equatable{
     
+    typealias Identity = Int
+    var identity : Identity {
+        
+        switch  self {
+        case let .selected(cellViewModel: block):
+            return block.codeBlockId
+        case let .candidate(block, _):
+            return block.codeBlockId
+        }
+    }
+    static func ==(lhs : EnglishCodeSentenceCollectionViewCellItem, rhs: EnglishCodeSentenceCollectionViewCellItem) -> Bool {
+        return lhs.identity == rhs.identity
+    }
+}
+struct EnglishCodeSentenceCollectionViewSectionModel {
+    var index : Int
+    var items : [Item]
+}
+extension EnglishCodeSentenceCollectionViewSectionModel : IdentifiableType, Equatable{
+    typealias Identity = Int
     typealias Item = EnglishCodeSentenceCollectionViewCellItem
-    
-    var items : [EnglishCodeSentenceCollectionViewCellItem] {
-        switch self {
-        case .selectedSection(items: let items):
-            return items.map {$0}
-        case .candidateSection(items: let items):
-            return items.map {$0}
-        }
+    var identity : Identity {
+       return index
     }
+    static func ==(lhs : EnglishCodeSentenceCollectionViewSectionModel, rhs: EnglishCodeSentenceCollectionViewSectionModel) -> Bool {
+        return lhs.identity == rhs.identity
+    }
+}
+extension EnglishCodeSentenceCollectionViewSectionModel : AnimatableSectionModelType {
+    
     init(original: EnglishCodeSentenceCollectionViewSectionModel, items: [Item]) {
-        switch original {
-            case .selectedSection(items: let items):
-                self = .selectedSection(items: items)
-            case .candidateSection(items: let items):
-                self = .selectedSection(items: items)
-        }
+//        switch original {
+//            case .selectedSection(items: let items):
+//                self = .selectedSection(items: items)
+//            case .candidateSection(items: let items):
+//                self = .candidateSection(items: items)
+//        }
+        self = original
+        self.items = items
     }
     
 }
+//public struct AnimatableSectionModel<Section: IdentifiableType, ItemType: IdentifiableType & Equatable> {
+//    public var model: Section
+//    public var items: [Item]
+//
+//    public init(model: Section, items: [ItemType]) {
+//        self.model = model
+//        self.items = items
+//    }
+//
+//}
 class EnglishCodeSentenceViewModel : CodeSentence {
     var selectedCodeBlocks: Variable<[EnglishCodeSentenceCollectionViewCellItem]>
     var candidateCodeBlocks: Variable<[EnglishCodeSentenceCollectionViewCellItem]>
@@ -83,7 +113,7 @@ class EnglishCodeSentenceViewModel : CodeSentence {
     private let disposeBag = DisposeBag()
     init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock]){
         self.answerCodeBlocks = answerCodeBlocks
-        self.candidateCodeBlocks = Variable(candidateCodeBlocks.map { EnglishCodeSentenceCollectionViewCellItem.selected(cellViewModel: $0) })
+        self.candidateCodeBlocks = Variable(candidateCodeBlocks.map { EnglishCodeSentenceCollectionViewCellItem.candidate(cellViewModel: $0, isSelected: false)})
         self.selectedCodeBlocks = Variable(EnglishCodeSentenceViewModel.setUpExampleEnglishCodeBlocks().map {
             EnglishCodeSentenceCollectionViewCellItem.selected(cellViewModel: $0)
         })
@@ -94,14 +124,26 @@ class EnglishCodeSentenceViewModel : CodeSentence {
             if (indexPath.section == 0){
                 self.selectedCodeBlocks.value.remove(at: indexPath.item)
             }else {
-                self.candidateCodeBlocks.value.remove(at: indexPath.item)
+                switch self.candidateCodeBlocks.value[indexPath.item]{
+                    
+                case .selected(let cellViewModel):
+                    return
+                case .candidate(let cellViewModel, let isSelected):
+                    self.candidateCodeBlocks.value[indexPath.item] = .candidate(cellViewModel: cellViewModel, isSelected: !isSelected)
+                }
+                
+//                self.candidateCodeBlocks.value.remove(at: indexPath.item)
             }
         }).disposed(by: disposeBag)
     }
     
     static func setUpExampleEnglishCodeBlocks() -> [EnglishCodeBlock]{
-        return [EnglishCodeBlock.init(name: "I"), EnglishCodeBlock.init(name: "am") ,
-                EnglishCodeBlock.init(name: "a"), EnglishCodeBlock.init(name: "boy")]
+        return [EnglishCodeBlock.init(name: "I", id : 0), EnglishCodeBlock.init(name: "am", id : 1) ,
+                EnglishCodeBlock.init(name: "a", id : 2), EnglishCodeBlock.init(name: "boy", id : 3)]
+    }
+    static func setUpExampleEnglishCandidateCodeBlocks() -> [EnglishCodeBlock]{
+        return [EnglishCodeBlock.init(name: "I", id : 4), EnglishCodeBlock.init(name: "am", id : 5) ,
+                EnglishCodeBlock.init(name: "a", id : 6), EnglishCodeBlock.init(name: "boy", id : 7)]
     }
 }
 
@@ -138,7 +180,7 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
     private let disposeBag = DisposeBag()
     
     var viewModel : EnglishCodeSentenceViewModel!
-    let dataSource = RxCollectionViewSectionedReloadDataSource<EnglishCodeSentenceCollectionViewSectionModel>(configureCell: { (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
+    let dataSource = RxCollectionViewSectionedAnimatedDataSource<EnglishCodeSentenceCollectionViewSectionModel>(configureCell: { (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
             let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
             guard let englishCollectionViewCell : EnglishCodeCollectionViewCell = cell as? EnglishCodeCollectionViewCell else{
                 return cell
@@ -146,8 +188,15 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
             switch dataSource[indexPath] {
                 case let .selected(viewModel):
                     englishCollectionViewCell.codeLabel.text = viewModel.codeBlockName
+                    englishCollectionViewCell.codeLabel.backgroundColor = UIColor.white
                 case let .candidate(viewModel, isSelected):
                     englishCollectionViewCell.codeLabel.text = viewModel.codeBlockName
+                    
+                    if (isSelected){
+                        englishCollectionViewCell.codeLabel.backgroundColor = UIColor.red
+                    }else {
+                        englishCollectionViewCell.codeLabel.backgroundColor = UIColor.white
+                    }
             }
             return englishCollectionViewCell
         }
@@ -160,7 +209,7 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
         setUpCollectionViewBinding()
     }
     func setUpViewModels(){
-        viewModel = EnglishCodeSentenceViewModel.init(answerCodeBlocks: [], candidateCodeBlocks: EnglishCodeSentenceViewModel.setUpExampleEnglishCodeBlocks(), itemSelected: collectionView.rx.itemSelected.asDriver())
+        viewModel = EnglishCodeSentenceViewModel.init(answerCodeBlocks: [], candidateCodeBlocks: EnglishCodeSentenceViewModel.setUpExampleEnglishCandidateCodeBlocks(), itemSelected: collectionView.rx.itemSelected.asDriver())
     }
     func setUpViews(){
         self.view.backgroundColor = UIColor.white
@@ -174,11 +223,11 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
     }
     func setUpCollectionViewBinding(){
         let selected = viewModel.selectedCodeBlocks.asObservable().map { (items) -> EnglishCodeSentenceCollectionViewSectionModel in
-          return  .selectedSection(items: items)
+          return  EnglishCodeSentenceCollectionViewSectionModel(index: 0, items: items)
         }
         
         let candidate = viewModel.candidateCodeBlocks.asObservable().map { (items) -> EnglishCodeSentenceCollectionViewSectionModel in
-            return .candidateSection(items: items)
+            return EnglishCodeSentenceCollectionViewSectionModel(index: 1, items: items)
         }
         
         Observable.combineLatest([selected, candidate])
