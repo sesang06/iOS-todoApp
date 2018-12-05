@@ -59,8 +59,8 @@ extension EnglishCodeSentenceCollectionViewCellItem : IdentifiableType, Equatabl
         switch  self {
         case let .selected(cellViewModel: block):
             return block.codeBlockId
-        case let .candidate(block, _):
-            return block.codeBlockId
+        case let .candidate(block, isSelected):
+            return isSelected ? block.codeBlockId : -block.codeBlockId
         }
     }
     static func ==(lhs : EnglishCodeSentenceCollectionViewCellItem, rhs: EnglishCodeSentenceCollectionViewCellItem) -> Bool {
@@ -84,12 +84,6 @@ extension EnglishCodeSentenceCollectionViewSectionModel : IdentifiableType, Equa
 extension EnglishCodeSentenceCollectionViewSectionModel : AnimatableSectionModelType {
     
     init(original: EnglishCodeSentenceCollectionViewSectionModel, items: [Item]) {
-//        switch original {
-//            case .selectedSection(items: let items):
-//                self = .selectedSection(items: items)
-//            case .candidateSection(items: let items):
-//                self = .candidateSection(items: items)
-//        }
         self = original
         self.items = items
     }
@@ -125,14 +119,11 @@ class EnglishCodeSentenceViewModel : CodeSentence {
                 self.selectedCodeBlocks.value.remove(at: indexPath.item)
             }else {
                 switch self.candidateCodeBlocks.value[indexPath.item]{
-                    
-                case .selected(let cellViewModel):
-                    return
-                case .candidate(let cellViewModel, let isSelected):
-                    self.candidateCodeBlocks.value[indexPath.item] = .candidate(cellViewModel: cellViewModel, isSelected: !isSelected)
-                }
-                
-//                self.candidateCodeBlocks.value.remove(at: indexPath.item)
+                    case .selected(let _):
+                        return
+                    case .candidate(let cellViewModel, let isSelected):
+                        self.candidateCodeBlocks.value[indexPath.item] = .candidate(cellViewModel: cellViewModel, isSelected: !isSelected)
+                    }
             }
         }).disposed(by: disposeBag)
     }
