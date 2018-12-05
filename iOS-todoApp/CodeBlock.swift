@@ -37,34 +37,30 @@ protocol CodeSentence {
 
 struct EnglishCodeBlock : CodeBlock, Hashable {
     var codeBlockName: String
-    
     var codeBlockId: Int
     init(name: String, id : Int){
         self.codeBlockName = name
         self.codeBlockId = id
     }
 }
-
-enum EnglishCodeSentenceCollectionViewCellItem {
-    case selected(cellViewModel : EnglishCodeBlock)
-    case candidate(cellViewModel : EnglishCodeBlock, isSelected : Bool)
+extension EnglishCodeBlock : Equatable {
+    static func ==(lhs : EnglishCodeBlock, rhs: EnglishCodeBlock) -> Bool {
+        return lhs.codeBlockName == rhs.codeBlockName && lhs.codeBlockId == rhs.codeBlockId
+    }
 }
 
-
+struct EnglishCodeSentenceCollectionViewCellItem : Hashable {
+    var codeBlock : EnglishCodeBlock
+    var isSelected : Bool
+}
 extension EnglishCodeSentenceCollectionViewCellItem : IdentifiableType, Equatable{
-    
-    typealias Identity = Int
+    typealias Identity = EnglishCodeSentenceCollectionViewCellItem
     var identity : Identity {
         
-        switch  self {
-        case let .selected(cellViewModel: block):
-            return block.codeBlockId
-        case let .candidate(block, isSelected):
-            return isSelected ? block.codeBlockId : -block.codeBlockId
-        }
+       return self
     }
     static func ==(lhs : EnglishCodeSentenceCollectionViewCellItem, rhs: EnglishCodeSentenceCollectionViewCellItem) -> Bool {
-        return lhs.identity == rhs.identity
+        return lhs.codeBlock == rhs.codeBlock && lhs.isSelected == rhs.isSelected
     }
 }
 struct EnglishCodeSentenceCollectionViewSectionModel {
@@ -106,9 +102,9 @@ class EnglishCodeSentenceViewModel : CodeSentence {
     private let disposeBag = DisposeBag()
     init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock]){
         self.answerCodeBlocks = answerCodeBlocks
-        self.candidateCodeBlocks = Variable(candidateCodeBlocks.map { EnglishCodeSentenceCollectionViewCellItem.candidate(cellViewModel: $0, isSelected: false)})
+        self.candidateCodeBlocks = Variable(candidateCodeBlocks.map { EnglishCodeSentenceCollectionViewCellItem.init(codeBlock: $0, isSelected: false)})
         self.selectedCodeBlocks = Variable(EnglishCodeSentenceViewModel.setUpExampleEnglishCodeBlocks().map {
-            EnglishCodeSentenceCollectionViewCellItem.selected(cellViewModel: $0)
+            EnglishCodeSentenceCollectionViewCellItem.init(codeBlock: $0, isSelected: false)
         })
     }
     convenience init(answerCodeBlocks : [EnglishCodeBlock], candidateCodeBlocks : [EnglishCodeBlock], itemSelected : Driver<IndexPath>){
@@ -117,12 +113,7 @@ class EnglishCodeSentenceViewModel : CodeSentence {
             if (indexPath.section == 0){
                 self.selectedCodeBlocks.value.remove(at: indexPath.item)
             }else {
-                switch self.candidateCodeBlocks.value[indexPath.item]{
-                    case .selected(let _):
-                        return
-                    case .candidate(let cellViewModel, let isSelected):
-                        self.candidateCodeBlocks.value[indexPath.item] = .candidate(cellViewModel: cellViewModel, isSelected: !isSelected)
-                    }
+                self.candidateCodeBlocks.value[indexPath.item].isSelected = !self.candidateCodeBlocks.value[indexPath.item].isSelected
             }
         }).disposed(by: disposeBag)
     }
@@ -175,19 +166,14 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
             guard let englishCollectionViewCell : EnglishCodeCollectionViewCell = cell as? EnglishCodeCollectionViewCell else{
                 return cell
             }
-            switch dataSource[indexPath] {
-                case let .selected(viewModel):
-                    englishCollectionViewCell.codeLabel.text = viewModel.codeBlockName
-                    englishCollectionViewCell.codeLabel.backgroundColor = UIColor.white
-                case let .candidate(viewModel, isSelected):
-                    englishCollectionViewCell.codeLabel.text = viewModel.codeBlockName
-                    
-                    if (isSelected){
-                        englishCollectionViewCell.codeLabel.backgroundColor = UIColor.red
-                    }else {
-                        englishCollectionViewCell.codeLabel.backgroundColor = UIColor.white
-                    }
+            let item = dataSource[indexPath]
+        
+            if (item.isSelected){
+                englishCollectionViewCell.codeLabel.backgroundColor = UIColor.red
+            }else {
+                englishCollectionViewCell.codeLabel.backgroundColor = UIColor.white
             }
+            englishCollectionViewCell.codeLabel.text = item.codeBlock.codeBlockName
             return englishCollectionViewCell
         }
     )
