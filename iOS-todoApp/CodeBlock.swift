@@ -84,16 +84,7 @@ extension EnglishCodeSentenceCollectionViewSectionModel : AnimatableSectionModel
     }
     
 }
-//public struct AnimatableSectionModel<Section: IdentifiableType, ItemType: IdentifiableType & Equatable> {
-//    public var model: Section
-//    public var items: [Item]
-//
-//    public init(model: Section, items: [ItemType]) {
-//        self.model = model
-//        self.items = items
-//    }
-//
-//}
+
 class EnglishCodeSentenceViewModel : CodeSentence {
     var selectedCodeBlocks: Variable<[EnglishCodeSentenceCollectionViewCellItem]>
     var candidateCodeBlocks: Variable<[EnglishCodeSentenceCollectionViewCellItem]>
@@ -163,7 +154,7 @@ class EnglishCodeViewController : UIViewController, UICollectionViewDelegateFlow
     var viewModel : EnglishCodeSentenceViewModel!
     let dataSource = RxCollectionViewSectionedAnimatedDataSource<EnglishCodeSentenceCollectionViewSectionModel>(configureCell: { (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
             let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-            guard let englishCollectionViewCell : EnglishCodeCollectionViewCell = cell as? EnglishCodeCollectionViewCell else{
+            guard let englishCollectionViewCell : EnglishCodeCollectionViewCell = cell as? EnglishCodeCollectionViewCell else {
                 return cell
             }
             let item = dataSource[indexPath]

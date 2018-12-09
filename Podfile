@@ -11,6 +11,7 @@ target 'iOS-todoApp' do
   pod 'RxCocoa', '~> 4.0'
   pod 'RxDataSources', '~> 3.0'
   pod 'Cache'
+  pod 'Moya', '~> 12.0'
   # Pods for iOS-todoApp
 
   target 'iOS-todoAppTests' do
