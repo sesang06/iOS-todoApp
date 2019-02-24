@@ -66,11 +66,20 @@ extension PickerViewController {
         case .GenreItem(let item, let isChecked):
           let cell: GenreCell = collectionView.dequeueReusableCell(withReuseIdentifier: "genreIdentifer", for: indexPath) as! GenreCell
           cell.label.text = item.rawValue
+          if isChecked {
+            cell.label.backgroundColor = .red
+          } else {
+            cell.label.backgroundColor = .white
+          }
           return cell
         case .FoodGenreItem(let item, let isChecked):
           let cell: GenreCell = collectionView.dequeueReusableCell(withReuseIdentifier: "genreIdentifer", for: indexPath) as! GenreCell
           cell.label.text = item.rawValue
-          
+          if isChecked {
+            cell.label.backgroundColor = .red
+          } else {
+            cell.label.backgroundColor = .white
+          }
           return cell
         }
     },
@@ -104,10 +113,56 @@ class GenreCell: UICollectionViewCell {
   }
 }
 
-class PickerViewController: BaseViewController {
+class PickerViewModel {
   
+  let itemSelected = PublishSubject<IndexPath>()
+  
+  var result: Driver<[MultipleSectionModel]> {
+    return dataSource.asDriver()
+  }
+  let dataSource: BehaviorRelay<[MultipleSectionModel]>
+  init(dataSource: [MultipleSectionModel]){
+    self.dataSource = BehaviorRelay<[MultipleSectionModel]>(value: dataSource)
+    
+    itemSelected.subscribe(onNext: { indexPath in
+      var newDataSource = self.dataSource.value
+      var items = newDataSource[indexPath.section].items
+      
+      switch items[indexPath.item] {
+      case let .FoodGenreItem(item: item, isChecked: isChecked):
+        items[indexPath.item] = .FoodGenreItem(item: item, isChecked: !isChecked)
+      case let .GenreItem(item: item, isChecked: isChecked):
+        items[indexPath.item] = .GenreItem(item: item, isChecked: !isChecked)
+     
+      }
+      
+      switch newDataSource[indexPath.section]  {
+      case .FoodGenreSection(title: let title, items: _):
+        newDataSource[indexPath.section] = .FoodGenreSection(title: title, items: items)
+      case .GenreSection(title: let title, items: _):
+         newDataSource[indexPath.section] = .GenreSection(title: title, items: items)
+      }
+      self.dataSource.accept(newDataSource)
+    })
+    
+    
+  }
+  
+  
+}
+
+class PickerViewController: BaseViewController {
+  typealias ViewModel = PickerViewModel
   let disposeBag = DisposeBag()
   let genreIdentifer = "genreIdentifer"
+  let sections: [MultipleSectionModel] = [
+    .GenreSection(title: "음식점 종류",
+                  items: Restaurant.Genre.allCases.map{ SectionItem.GenreItem(item: $0, isChecked: false) }),
+    .FoodGenreSection(title: "음식 종류",
+                      items: Restaurant.FoodGenre.allCases.map{ SectionItem.FoodGenreItem(item: $0, isChecked: false) } )
+  ]
+  
+  lazy var viewModel = ViewModel(dataSource: sections)
   let titleLabel: UILabel = {
     let l = UILabel()
     l.text = "필터를 골라 주세요."
@@ -165,16 +220,15 @@ class PickerViewController: BaseViewController {
   func bindViews(){
     let dataSource = PickerViewController.dataSource()
     
-    let sections: [MultipleSectionModel] = [
-      .GenreSection(title: "음식점 종류",
-                    items: Restaurant.Genre.allCases.map{ SectionItem.GenreItem(item: $0, isChecked: false) }),
-      .FoodGenreSection(title: "음식 종류",
-      items: Restaurant.FoodGenre.allCases.map{ SectionItem.FoodGenreItem(item: $0, isChecked: false) } )
-    ]
     
-    Observable.just(sections)
-      .bind(to: collectionView.rx.items(dataSource: dataSource))
-    .disposed(by: disposeBag)
+//    Observable.just(sections)
+//      .bind(to: collectionView.rx.items(dataSource: dataSource))
+//    .disposed(by: disposeBag)
+    
+    collectionView.rx.itemSelected.bind(to: viewModel.itemSelected)
+    
+    viewModel.result.drive(collectionView.rx.items(dataSource: dataSource))
+    
   }
   
 }
