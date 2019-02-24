@@ -28,4 +28,10 @@ extension Restaurant {
     case japanese = "일식"
     case chinese = "중식"
   }
+  
+  enum FoodGenre: String, CaseIterable {
+    case meat = "고기"
+    case noodle = "국수"
+    case tenpura = "튀김"
+  }
 }

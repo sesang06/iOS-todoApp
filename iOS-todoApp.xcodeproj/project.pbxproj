@@ -25,6 +25,8 @@
 		06CCE20221AACA9000A63088 /* iOS_todoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE20121AACA9000A63088 /* iOS_todoAppTests.swift */; };
 		06CCE20D21AACA9000A63088 /* iOS_todoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE20C21AACA9000A63088 /* iOS_todoAppUITests.swift */; };
 		06EF3B9822227B000050DDA7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EF3B9722227B000050DDA7 /* Util.swift */; };
+		06EF3B9B22228A7B0050DDA7 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EF3B9A22228A7B0050DDA7 /* Filter.swift */; };
+		06EF3B9D22228D0A0050DDA7 /* PickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EF3B9C22228D0A0050DDA7 /* PickViewController.swift */; };
 		B900AD440FA8E310450DD64B /* Pods_iOS_todoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B112E05EAE1491612BEFEA2C /* Pods_iOS_todoApp.framework */; };
 		F59BE9A041308927B7BC6074 /* Pods_iOS_todoAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DE2B2B8157166DE5ABE194 /* Pods_iOS_todoAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		06CCE20C21AACA9000A63088 /* iOS_todoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_todoAppUITests.swift; sourceTree = "<group>"; };
 		06CCE20E21AACA9000A63088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06EF3B9722227B000050DDA7 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		06EF3B9A22228A7B0050DDA7 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		06EF3B9C22228D0A0050DDA7 /* PickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickViewController.swift; sourceTree = "<group>"; };
 		15DE2B2B8157166DE5ABE194 /* Pods_iOS_todoAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_todoAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A103B392AB6F4B11E1018C /* Pods-iOS-todoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-todoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-todoApp/Pods-iOS-todoApp.release.xcconfig"; sourceTree = "<group>"; };
 		4AD4C0A416B5D0858BF7B25D /* Pods-iOS-todoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-todoAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-todoAppTests/Pods-iOS-todoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		06CCE1E821AACA8D00A63088 /* iOS-todoApp */ = {
 			isa = PBXGroup;
 			children = (
+				06EF3B9922228A5F0050DDA7 /* PickViewController */,
 				06B19F0A22182ED10003995B /* Base */,
 				06B19F0722182D2D0003995B /* PostViewController */,
 				06B19F0622182D110003995B /* ViewController */,
@@ -210,6 +215,15 @@
 				06CCE20E21AACA9000A63088 /* Info.plist */,
 			);
 			path = "iOS-todoAppUITests";
+			sourceTree = "<group>";
+		};
+		06EF3B9922228A5F0050DDA7 /* PickViewController */ = {
+			isa = PBXGroup;
+			children = (
+				06EF3B9A22228A7B0050DDA7 /* Filter.swift */,
+				06EF3B9C22228D0A0050DDA7 /* PickViewController.swift */,
+			);
+			path = PickViewController;
 			sourceTree = "<group>";
 		};
 		85AD4C3E19858438C1BF23B2 /* Frameworks */ = {
@@ -549,10 +563,12 @@
 				0659E2F821B41143003E753E /* CodeBlock.swift in Sources */,
 				062DD05321C28B0A007B09DB /* Moya.swift in Sources */,
 				06B19F0D22182F280003995B /* BaseViewController.swift in Sources */,
+				06EF3B9D22228D0A0050DDA7 /* PickViewController.swift in Sources */,
 				06CCE1EC21AACA8D00A63088 /* ViewController.swift in Sources */,
 				0659E2F621B3D4A5003E753E /* TableViewController.swift in Sources */,
 				06B19F0922182DE20003995B /* PostRestaurantViewController.swift in Sources */,
 				06CCE1F221AACA8D00A63088 /* iOS_todoApp.xcdatamodeld in Sources */,
+				06EF3B9B22228A7B0050DDA7 /* Filter.swift in Sources */,
 				06EF3B9822227B000050DDA7 /* Util.swift in Sources */,
 				0659E2F021B2C60B003E753E /* ViewModel.swift in Sources */,
 				0659E2F221B3BFBB003E753E /* LoginViewController.swift in Sources */,

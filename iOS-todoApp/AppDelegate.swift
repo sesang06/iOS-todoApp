@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         let viewModel = PostRestaurantViewModel()
         let vc = PostRestaurantViewController(viewModel: viewModel)
-        let nav = UINavigationController(rootViewController: vc)
+      let p = PickerViewController()
+        let nav = UINavigationController(rootViewController: p)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         return true
