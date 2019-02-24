@@ -24,6 +24,7 @@
 		06CCE1F721AACA8F00A63088 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06CCE1F521AACA8F00A63088 /* LaunchScreen.storyboard */; };
 		06CCE20221AACA9000A63088 /* iOS_todoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE20121AACA9000A63088 /* iOS_todoAppTests.swift */; };
 		06CCE20D21AACA9000A63088 /* iOS_todoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCE20C21AACA9000A63088 /* iOS_todoAppUITests.swift */; };
+		06EF3B9822227B000050DDA7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EF3B9722227B000050DDA7 /* Util.swift */; };
 		B900AD440FA8E310450DD64B /* Pods_iOS_todoApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B112E05EAE1491612BEFEA2C /* Pods_iOS_todoApp.framework */; };
 		F59BE9A041308927B7BC6074 /* Pods_iOS_todoAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DE2B2B8157166DE5ABE194 /* Pods_iOS_todoAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +69,7 @@
 		06CCE20821AACA9000A63088 /* iOS-todoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-todoAppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CCE20C21AACA9000A63088 /* iOS_todoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_todoAppUITests.swift; sourceTree = "<group>"; };
 		06CCE20E21AACA9000A63088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06EF3B9722227B000050DDA7 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		15DE2B2B8157166DE5ABE194 /* Pods_iOS_todoAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_todoAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A103B392AB6F4B11E1018C /* Pods-iOS-todoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-todoApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-todoApp/Pods-iOS-todoApp.release.xcconfig"; sourceTree = "<group>"; };
 		4AD4C0A416B5D0858BF7B25D /* Pods-iOS-todoAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-todoAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS-todoAppTests/Pods-iOS-todoAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				06B19F0C22182F280003995B /* BaseViewController.swift */,
+				06EF3B9722227B000050DDA7 /* Util.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				0659E2F621B3D4A5003E753E /* TableViewController.swift in Sources */,
 				06B19F0922182DE20003995B /* PostRestaurantViewController.swift in Sources */,
 				06CCE1F221AACA8D00A63088 /* iOS_todoApp.xcdatamodeld in Sources */,
+				06EF3B9822227B000050DDA7 /* Util.swift in Sources */,
 				0659E2F021B2C60B003E753E /* ViewModel.swift in Sources */,
 				0659E2F221B3BFBB003E753E /* LoginViewController.swift in Sources */,
 				0659E2F421B3C31F003E753E /* APIService.swift in Sources */,
