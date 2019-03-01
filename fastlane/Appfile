@@ -1,0 +1,10 @@
+app_identifier("sesang06.iOS-todoApp") # The bundle identifier of your app
+apple_id("sesang06@naver.com") # Your Apple email address
+
+itc_team_id("119335083") # App Store Connect Team ID
+team_id("7GDRWN9V7N") # Developer Portal Team ID
+itc_team_id("119335083") # App Store Connect Team ID
+team_id("7GDRWN9V7N") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

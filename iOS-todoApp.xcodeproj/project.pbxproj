@@ -326,10 +326,12 @@
 					};
 					06CCE1FC21AACA9000A63088 = {
 						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Manual;
 						TestTargetID = 06CCE1E521AACA8D00A63088;
 					};
 					06CCE20721AACA9000A63088 = {
 						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Manual;
 						TestTargetID = 06CCE1E521AACA8D00A63088;
 					};
 				};
@@ -742,6 +744,7 @@
 			baseConfigurationReference = 59BB2B94944ACCD11E9317C2 /* Pods-iOS-todoApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7GDRWN9V7N;
 				INFOPLIST_FILE = "iOS-todoApp/Info.plist";
@@ -752,6 +755,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sesang06.iOS-todoApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -762,6 +766,7 @@
 			baseConfigurationReference = 34A103B392AB6F4B11E1018C /* Pods-iOS-todoApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7GDRWN9V7N;
 				INFOPLIST_FILE = "iOS-todoApp/Info.plist";
@@ -772,6 +777,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sesang06.iOS-todoApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -783,7 +789,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = "iOS-todoAppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -804,7 +810,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = "iOS-todoAppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -824,7 +830,7 @@
 			baseConfigurationReference = 8B75E27004A12967F0954A4B /* Pods-iOS-todoAppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = "iOS-todoAppUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -844,7 +850,7 @@
 			baseConfigurationReference = 8C2C549247B1BB0269363B0F /* Pods-iOS-todoAppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = "iOS-todoAppUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
