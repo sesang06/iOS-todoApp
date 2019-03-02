@@ -40,6 +40,9 @@ PODS:
   - RxTest (4.4.1):
     - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
+  - RxViewController (0.4.1):
+    - RxCocoa (>= 4.0.0)
+    - RxSwift (>= 4.0.0)
   - SnapKit (4.0.1)
   - SwiftyJSON (4.2.0)
 
@@ -56,6 +59,7 @@ DEPENDENCIES:
   - RxSwift (~> 4.0)
   - RxSwiftExt
   - RxTest (~> 4.0)
+  - RxViewController
   - SnapKit (~> 4.0.0)
   - SwiftyJSON (~> 4.0)
 
@@ -76,6 +80,7 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
     - RxTest
+    - RxViewController
     - SnapKit
     - SwiftyJSON
 
@@ -95,9 +100,10 @@ SPEC CHECKSUMS:
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxTest: f8e548755ca3c7502dc41c7d3b28802c90115a38
+  RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 3c547ce0adbfda7c8a091210ceccd8b04ec9a9b1
+PODFILE CHECKSUM: cd52c7d92cb712e8c737667af49ea1e902a7fcfb
 
 COCOAPODS: 1.5.3

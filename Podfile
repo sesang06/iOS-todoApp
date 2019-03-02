@@ -14,6 +14,7 @@ target 'iOS-todoApp' do
   pod 'Action'
   pod 'RxKeyboard'
   pod 'RxDataSources', '~> 3.0'
+  pod 'RxViewController'
   pod 'Cache'
   pod 'Moya', '~> 12.0'
   # Pods for iOS-todoApp

@@ -22,7 +22,10 @@ platform :ios do
     build_app(workspace: "iOS-todoApp.xcworkspace", scheme: "iOS-todoApp")
     upload_to_app_store(skip_metadata: true, skip_screenshots: true)
   end
-  lane :example do
-      puts("this is my first 🚀 lane")
+  lane :increase_build_number do
+      identifier = get_info_plist_value(path: "./iOS-todoApp/Info.plist", key: "CFBundleVersion")
+      new_identifier = (identifier.to_i + 1).to_s
+      set_info_plist_value(path: "./iOS-todoApp/Info.plist", key: "CFBundleVersion", value: new_identifier)
+      puts("버전 넘버" + identifier + "가 " + new_identifier + "로 변경 되었습니다.")
   end
 end

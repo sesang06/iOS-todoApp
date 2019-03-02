@@ -153,7 +153,6 @@ class PickerViewModel {
 
 class PickerViewController: BaseViewController {
   typealias ViewModel = PickerViewModel
-  let disposeBag = DisposeBag()
   let genreIdentifer = "genreIdentifer"
   let sections: [MultipleSectionModel] = [
     .GenreSection(title: "음식점 종류",

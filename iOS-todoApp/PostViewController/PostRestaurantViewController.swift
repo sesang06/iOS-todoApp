@@ -18,7 +18,7 @@ import RxSwift
 
 class PostRestaurantViewModel {
   
-  // input
+  
   let titleSubject = PublishSubject<String>()
   
   let detailSubject = PublishSubject<String>()
@@ -26,11 +26,7 @@ class PostRestaurantViewModel {
   let genreSubject = PublishSubject<[Restaurant.Genre]>()
   
   let submit = PublishSubject<Void>()
-  //  let genreSubject =
-  //    PublishSubject<
   
-  
-  // output
   
   let model: Driver<Restaurant>
   
@@ -40,15 +36,7 @@ class PostRestaurantViewModel {
   let disposeBag = DisposeBag()
   init(){
     
-    titleSubject.subscribe(onNext: {
-      debug_log($0)
-    })
-    detailSubject.subscribe(onNext: {
-      debug_log($0)
-    })
-    submit.subscribe(onNext: {
-      debug_log($0)
-    })
+    
     genreSubject.subscribe(onNext: { genreSubject in
       print(genreSubject)
     })
@@ -94,7 +82,6 @@ class PostRestaurantViewController: BaseViewController {
   typealias ViewModel = PostRestaurantViewModel
   
   let viewModel: ViewModel
-  let disposeBag = DisposeBag()
   
   let titleTextField: UITextField = {
     let tf = UITextField()
