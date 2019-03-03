@@ -11,11 +11,16 @@ import Foundation
 import UIKit
 
 
-class RestaurantData{
+class RestaurantData {
   var title : String?
   var detail : String?
   var objectID : NSManagedObjectID?
   
+  convenience init(_ restuarant: Restaurant){
+    self.init()
+    self.title = restuarant.name
+    self.detail = restuarant.description
+  }
 }
 
 class TextFileDAO{

@@ -56,7 +56,7 @@ extension MultipleSectionModel {
   }
 }
 
-extension PickerViewController {
+extension FilterController {
   static func dataSource() -> RxCollectionViewSectionedReloadDataSource<MultipleSectionModel> {
     return RxCollectionViewSectionedReloadDataSource<MultipleSectionModel>(
       configureCell: { (dataSource, collectionView, indexPath, sectionItem) -> UICollectionViewCell in
@@ -151,7 +151,7 @@ class PickerViewModel {
   
 }
 
-class PickerViewController: BaseViewController {
+class FilterController: BaseViewController {
   typealias ViewModel = PickerViewModel
   let genreIdentifer = "genreIdentifer"
   let sections: [MultipleSectionModel] = [
@@ -217,7 +217,7 @@ class PickerViewController: BaseViewController {
   }
   
   func bindViews(){
-    let dataSource = PickerViewController.dataSource()
+    let dataSource = FilterController.dataSource()
     
     
 //    Observable.just(sections)
