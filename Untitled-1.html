@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<script type="text/javascript">$(function(){$("input").each(function(){$(this).bind("focus",function(){$(".navigation-fixed-container").css("position","absolute")}),$(this).bind("blur",function(){$(".navigation-fixed-container").css("position","fixed")})})});	function NoonDatePhoto() {}	NoonDatePhoto.openPhotoStep = function (completeness, data) {	window.location = 'noondate://openPhotoStep?'+data;}</script><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1118.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script><meta http-equiv="Content-Script-Type" content="text/javascript"><meta http-equiv="Content-Style-Type" content="text/css"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi, viewport-fit=cover"><meta name="format-detection" content="telephone=no"><title></title><link rel="stylesheet" type="text/css" href="http://fbting.mozzet.com/res/css/reset.css?d=1531829186"><link rel="stylesheet" type="text/css" href="http://fbting.mozzet.com/res/css/mobile.css?d=1552067947"><link rel="stylesheet" type="text/css" href="http://fbting.mozzet.com/res/css/app.css?d=1531829186"><link rel="stylesheet" type="text/css" href="http://fbting.mozzet.com/res/css/material/actionbar/ios.css?d=1531829186"><link rel="stylesheet" type="text/css" href="http://fbting.mozzet.com/res/css/local_market/layout.css?d=1554971436"><script type="text/javascript" src="http://fbting.mozzet.com/res/js/jquery-1.9.1.min.js?d=1531829187"></script><script type="text/javascript" src="http://fbting.mozzet.com/res/js/mozzet/noondate_command.js?d=1554967954"></script><script type="text/javascript" src="http://fbting.mozzet.com/res/js/fastclick.min.js?d=1554967954"></script><script type="text/javascript" src="http://fbting.mozzet.com/res/js/mobile/local_market/modal.min.js?d=1554967954"></script><script type="text/javascript" src="http://fbting.mozzet.com/res/js/mozzet/move.js?d=1554967954"></script><script type="text/javascript" src="http://fbting.mozzet.com/res/js/require.js?d=1531829187"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="noondateCommand" src="http://fbting.mozzet.com/res/js/mozzet/noondate_command.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="@egjs/flicking" src="http://fbting.mozzet.com/res/js/flicking.pkgd.min.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="localMarket/api" src="http://fbting.mozzet.com/res/js/mobile/local_market/api.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="localMarket/bookmarkButton" src="http://fbting.mozzet.com/res/js/mobile/local_market/bookmarkButton.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="localMarket/commentWriter" src="http://fbting.mozzet.com/res/js/mobile/local_market/commentWriter.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="localMarket/commentList" src="http://fbting.mozzet.com/res/js/mobile/local_market/commentList.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="http://fbting.mozzet.com/res/js/underscore-min.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="baseview" src="http://fbting.mozzet.com/res/js/mozzet/view/base.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="tpl" src="http://fbting.mozzet.com/res/js/underscore-tpl.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="backbone" src="http://fbting.mozzet.com/res/js/backbone-min.js?bust=1554972395064"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="text" src="http://fbting.mozzet.com/res/js/require-text.js?bust=1554972395064"></script></head><body><div class="app"><div id="" class="header"><span class="header-left"><span id="back_button" class="back_button_3attack"></span></span><span class="header-right"><i class="icon icon-report"></i></span></div><div class="content-container"><div class="scroll-container"><div class="scroll-inner-wrapper"><div class="content-wrapper"><div class="image-container"><div class="image-flicking" style="overflow: hidden; box-sizing: border-box; touch-action: auto; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-user-drag: none;"><div class="eg-flick-container" style="position: relative; z-index: 2000; width: 100%; height: 100%; top: 0px; will-change: transform; pointer-events: auto; transform: translate(0px, 0px);"><div class="flicking-item eg-flick-panel" style="background-image: url(&quot;https://noondateseoul.s3.amazonaws.com/uploads/hh5b/67aa/99e6/bc611067e5c51c028acfa2.jpg&quot;); position: absolute; width: 375px; height: 100%; box-sizing: border-box; top: 0px; left: 0px; transform: translate(0%, 0px); will-change: transform;"><div class="flicking-label-wrapper"><div class="flicking-label">1/3</div></div></div><div class="flicking-item eg-flick-panel" style="background-image: url(&quot;https://noondateseoul.s3.amazonaws.com/uploads/hh83/5077/093c/7c3dd24eb1460a63238796.jpg&quot;); position: absolute; width: 375px; height: 100%; box-sizing: border-box; top: 0px; left: 0px; transform: translate(100%, 0px); will-change: transform;"><div class="flicking-label-wrapper"><div class="flicking-label">2/3</div></div></div><div class="flicking-item eg-flick-panel" style="background-image: url(&quot;https://noondateseoul.s3.amazonaws.com/uploads/hh97/541c/bb14/55b96f52aec4f98e8c9f1c.jpg&quot;); position: absolute; width: 375px; height: 100%; box-sizing: border-box; top: 0px; left: 0px; transform: translate(200%, 0px); will-change: transform;"><div class="flicking-label-wrapper"><div class="flicking-label">3/3</div></div></div></div></div></div><div class="product-info-wrapper"><div class="product-summary"><div class="left"><div class="product-title">픽디자인 캡쳐V3</div><div class="product-price">60,000 원</div><div class="product-location"><i class="icon icon-location-pin"></i><span class="location-label">서울특별시 강서구</span></div></div><div class="right"><div class="bnt-favorite"><span><i class="icon icon-favorite"></i>찜
+								</span></div></div></div><div class="product-description"><div class="product-count-description"><div class="left"><span class="product-count">조회 8</span></div><div class="right">1분 전</div></div></div><div class="product-content">픽디자인 캡쳐 V3 블랙 판매합니다. 
+개봉 후 2-3회 시용했고 생활 기스 없습니다. 
+화곡역에서 거래 가능합니다. </div><div class="product-user-wrapper"><div class="user-thumbnail-wrapper"><div class="user-thumbnail"><img src="https://noondateseoul.s3.amazonaws.com/uploads/hh15/a212/fa78/981a5a6102b139971c1def.jpg"></div><i class="icon icon-safety-badge badge"></i></div><div class="user-profile"><div class="user-nickname">marco_park</div><div class="user-summary">(서울/30대 후반/UX디자이너)</div></div></div></div></div><div class="content-wrapper comment-wrapper"><div class="comment-write-container "><div class="comment-count">댓글 <span id="comment-count">0</span></div><div class="comment-writer"><div class="comment-input-wrapper">
+	<input type="text" placeholder="댓글을 남겨주세요.">
+	<div class="btn-write">등록</div>
+</div></div></div><div class="comment-group">
+</div></div></div></div></div></div><div id="_templates"><script type="text/template" id="header-right-template"><i class="icon icon-report"></i></script><script type="text/template" id="content-container-template"><div class="scroll-container"><div class="scroll-inner-wrapper"><div class="content-wrapper"><div class="image-container"><div class="image-flicking"><% imageSize = product['photo_urls'].length %><% _.each(product['photo_urls'], function (photo, key) { %><div class="flicking-item" style="background-image:url('<%=photo%>')"><% // 이미지 갯수가 2개 이상만 페이지네이션 노출
+							if (imageSize > 1) { %><div class="flicking-label-wrapper"><div class="flicking-label"><%=(key + 1)%>/<%=imageSize%></div></div><% } %></div><% }) %></div></div><div class="product-info-wrapper"><div class="product-summary"><div class="left"><div class="product-title"><%= product['title'] %></div><div class="product-price"><%= _.numberFormat(product['price']) %> 원</div><div class="product-location"><i class="icon icon-location-pin"></i><span class="location-label"><%= product['location'] %></span></div></div><div class="right"><div class="bnt-favorite <%=myProduct ? 'hide' : ''%>"><span><i class="icon icon-favorite"></i>찜
+								</span></div></div></div><div class="product-description"><div class="product-count-description"><div class="left"><span class="product-count">조회 <%= product['views'] %></span></div><div class="right"><%= product['created_at'] %></div></div></div><div class="product-content"><%= product['content'] %></div><div class="product-user-wrapper"><% sellerInfo = product['seller_info'] %><div class="user-thumbnail-wrapper"><div class="user-thumbnail"><img src="<%=sellerInfo['thumbnail']%>"></div><% if (sellerInfo['real_verified']) { %><i class="icon icon-safety-badge badge"></i><% } %></div><div class="user-profile"><div class="user-nickname"><%=sellerInfo['nickname']%></div><div class="user-summary"><%=sellerInfo['info']%></div></div></div></div></div><div class="content-wrapper comment-wrapper"><div class="comment-write-container <%= product['sale_status'] == '0' || myProduct ? 'readonly' : ''%>"><div class="comment-count">댓글 <span id="comment-count"></span></div><div class="comment-writer"></div></div><div class="comment-group"></div></div></div></div></script></div><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"3abbc522db","applicationID":"155864920","transactionName":"b1dSbEcHC0ZUUUNdXlYdZUpcSQxbUVdPGkFQQg==","queueTime":0,"applicationTime":57,"atts":"QxBRGg8dGEg=","errorBeacon":"bam.nr-data.net","agent":""}</script><script type="text/javascript">
+	define('jquery', [], function() {
+		return window.jQuery;
+	});
+	</script><script type="text/javascript">
+		$(document).ready(function(){ webview_navibar_color_change(); });
+		function webview_navibar_color_change(){
+		var hex = "ffffff";
+		if($("#navigation_bar").length>0) {
+			var rgbs = $("#navigation_bar").css("background-color").match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+			var hex = parseInt(rgbs[1]).toString(16) + parseInt(rgbs[2]).toString(16) + parseInt(rgbs[3]).toString(16);
+		}
+		webview_status_bar_color_change(hex);
+	}
+	function webview_status_bar_color_change(hex){
+		var status_color_change_url = "noondate://change_statusbar_color?hex="+hex;
+		location.href=status_color_change_url;
+	}
+	</script><script type="text/javascript">
+		requirejs.config({
+	baseUrl: 'http://fbting.mozzet.com/res/js/mobile',
+	paths: {
+		'localMarket': 'local_market',
+		'underscore': 'http://fbting.mozzet.com/res/js/underscore-min',
+		'backbone': 'http://fbting.mozzet.com/res/js/backbone-min',
+		'baseview': 'http://fbting.mozzet.com/res/js/mozzet/view/base',
+		'noondateCommand': 'http://fbting.mozzet.com/res/js/mozzet/noondate_command',
+		"text": "http://fbting.mozzet.com/res/js/require-text",
+		"tpl": "http://fbting.mozzet.com/res/js/underscore-tpl",
+		'Swiper': 'http://fbting.mozzet.com/res/js/swiper.min',
+		'@egjs/flicking': "http://fbting.mozzet.com/res/js/flicking.pkgd.min"
+	},
+	urlArgs: "bust=" + (new Date()).getTime(),
+	shim: {
+		'underscore': {
+			exports: '_',
+		},
+		'backbone': {
+			exports: 'Backbone',
+			shim: [
+				'underscore',
+			],
+		},
+		'baseview': {
+			shim: [
+				'backbone',
+			]
+		}
+	},
+	config:  {
+		text: {
+			useXhr: function () {
+				return true;
+			}
+		}
+	},
+});	/* Backbone 도입 전 간단하게 만든 View 클래스, 앞으로 Backbone 사용합시다. common/js/view.js보면 있음 */
+
+define('SimpleClass', function() {
+	/**
+	 * @namespace SimpleClass
+	 */
+	return {
+		/**
+		 * @name SimpleClassExtend
+		 * @function
+		 * @param parameters
+		 * @returns {any}
+		 */
+		extend: function(parameters) {
+			var pp = {}, k, v;
+			for(k in parameters) {
+				v = parameters[k];
+				pp[k] = {
+					writable: true,
+					configurable: true,
+					enumerable: true,
+					value: v
+				};
+			}
+			return Object.create(this, pp);
+		},
+		/**
+		 * @name SimpleClassCreate
+		 * @function
+		 * @param parameters
+		 * @returns {*|any}
+		 */
+		create: function(parameters) {
+			return this.extend(parameters);
+		}
+	};
+});
+
+define('BaseView', ['SimpleClass'], function(SimpleClass) {
+	/**
+	 * 앞에 _가 붙은 메소드들은 직접 호출하지 마세요.
+	 * @namespace BaseView
+	 * @function extend {SimpleClassExtend}
+	 * @function create {SimpleClassCreate}
+	 */
+	return SimpleClass.extend({
+		rootSelector: '',
+		getView: function() {
+			return $(this.rootSelector);
+		},
+		get: function(selector) {
+			return this.getView().find(selector);
+		},
+		getById: function(id) {
+			return this.get('#' + id);
+		},
+		getByClass: function(cls) {
+			return this.get('.' + cls);
+		},
+		_showMenu: function(menus, args) { var self = this;
+			var i, v, k, ii = 1;
+			for(i in menus) {
+				for(k in menus[i]) {
+					v = menus[i][k];
+					args[k + ii] = v;
+				}
+				ii += 1;
+			}
+			args.menu_count = menus.length;
+			if (!args.selected_photo) {
+				args.selected_photo = '';
+			}
+
+			self.invokeApp('showMenu', args);
+		},
+		_showConfirmDialog: function(type, message, acceptTitle) { var self = this;
+			var args = {
+				'callback': 'default_callback',
+				'message': message
+			};
+			if (acceptTitle) {
+				args.acceptTitle = acceptTitle;
+			}
+
+			self.invokeApp('showConfirmDialog', args);
+		},
+		_showWebDialog: function(url, situation, data) { var self = this;
+			/*
+			 * other_user_idx
+			 * token
+			 * callback_url
+			 * gift_idx
+			 * message
+			 */
+			self.showLoading();
+
+			var params = {
+				situation: situation,
+				from_mobile: true,
+				is_web_dialog: true
+			}, k;
+			$.extend(params, data);
+
+			var req = $.post(url + '?' + Date.now(), params, function(res) {
+				if (res) {
+					$('body').append(res);
+					self._appearWebDialog();
+				}
+			});
+		},
+		_appearWebDialog: function() { var self = this;
+			relocateDialog();
+			document.ontouchmove = function(e){ e.returnValue = false; }
+			self.hideLoading();
+		},
+		showLoading: function() {
+			setTimeout(function() {
+				window.location = 'noondate://showLoading';
+			}, 0);
+		},
+		hideLoading: function() {
+			setTimeout(function() {
+				window.location = 'noondate://hideLoading';
+			}, 0);
+		},
+		invokeApp: function(command, args, delay) {
+			if (typeof delay !== 'number') {
+				delay = 100;
+			}
+
+			var url = 'noondate://' + command;
+			if(args) {
+				var qs = [];
+				for(var k in args) {
+					qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(args[k]));
+				}
+				url = url + '?' + qs.join('&');
+			}
+			setTimeout(function() {
+				location.href = url;
+			}, delay);
+		},
+		loadTemplate: function(selector) {
+			return $('#_templates').find(selector).html();
+		}
+	});
+});
+	/**
+ * @module localMarket/App
+ */
+define('localMarket/App', ['underscore', 'baseview', 'device', 'Move', 'noondateCommand', 'localMarket/api', 'localMarket/Header'],
+	/**
+	 * 중고마켓 APP
+	 * @param _ underscore
+	 * @param {View} BaseView
+	 * @param device
+	 * @param {Move} Move
+	 * @param {NoondateCommand} noondateCommand
+	 * @param {LocalMarketApi} Api
+	 * @param header
+	 * @returns {*}
+	 */
+	function(_, BaseView, device, Move, noondateCommand, Api, header) {
+		var LIST_PAGE_URI = "list",
+			WRITE_PAGE_URI = "write",
+			MY_PAGE_URI = "store",
+			LOCATION_FILTER_URL = "locations",
+			DETAIL_PAGE_URL = "detail",
+			REPORT_PAGE_URL = "mobile/report";
+
+		local_market_underscore_mixin(_);
+
+		var App = BaseView.extend(/** @lends LocalMarketApp.prototype */{
+			/**
+			 * @constructs
+			 * @augments {object} data
+			 * @augments {string} data.token
+			 * @augments {string} data.userIdx
+			 * @augments {string} data.host
+			 * @augments {string} data.baseUrl
+			 * @augments {string} data.currentUrl
+			 * @augments {string} data.uriString
+			 * @augments {object} data.device
+			 * @augments {object} data.viewData
+			 * @augments {object} [data.header]
+			 * @augments {function} [data.header.actionClick]
+			 */
+			initialize: function (data) {
+				var self = this;
+
+				this.first = true;
+
+				this.viewData = data.viewData;
+				this.token = data.token;
+				this.userIdx = data.userIdx;
+				this.host = data.host;
+				this.baseUrl = data.baseUrl;
+				this.currentUrl = data.currentUrl;
+
+
+				this.contentSelector = '.content-container';
+				this.contentTemplate = _.template($("#content-container-template").html());
+				/**
+				 * 동네마켓 api service
+				 * @type {LocalMarketApi}
+				 */
+				this.api = new Api({
+					baseUrl: this.baseUrl,
+					token: this.token
+				});
+
+				Move({
+					method: 'POST',
+					url: this.currentUrl,
+					param: {
+						token: data.token
+					},
+					device: data.device
+				});
+
+				this.render();
+				// back 버튼 기본 처리
+				this.header.on('back', function (e) {
+					Move.history.back();
+				});
+			},
+			events: {
+				'blur textarea': '_headerReRender',
+				'keyup textarea': '_headerReRender',
+				'change  textarea': '_headerReRender'
+			},
+			render: function () {
+				if (this.first) {
+
+					$(this.contentSelector).append(this.contentTemplate(this.viewData));
+					this.first = false;
+				}
+				return this;
+			},
+			isAdmission: '1' === '1',
+			user: {
+				location: {},
+			},
+			header: header,
+			onActionClick: function(cb) {
+				this.header.off('actionClick');
+				this.header.on('actionClick', cb);
+			},
+			back: function() {
+				this.header.trigger('back');
+			},
+			onBack: function(cb) {
+				this.header.off('back');
+				this.header.on('back', cb);
+			},
+			/**
+			 * 중고마켓 상품 등록페이지로 이동
+			 * @param {object} [data]
+			 */
+			moveWritePage: function (data) {
+				data = data || {};
+				Move.post(this.baseUrl + "/" + WRITE_PAGE_URI, _.extend(data, {
+					token: this.token
+				})).go();
+			},
+
+			/**
+			 * 내 상점 페이지로 이동
+			 * @param {object} [data]
+			 */
+			moveStorePage: function (data) {
+				data = data || {};
+				Move.post(this.baseUrl + "/" + MY_PAGE_URI, _.extend(data, {
+					token: this.token,
+				})).go();
+			},
+
+			/**
+			 * 상품 상세 페이지 이동
+			 * @param {object} data
+			 * @param {int|string} data.product
+			 */
+			moveDetailPage: function(data) {
+				data = data || {};
+				Move.post(this.baseUrl + "/" + DETAIL_PAGE_URL, _.extend(data, {
+					token: this.token
+				})).go();
+			},
+
+			/**
+			 * 지역 필터 페이지 이동
+			 * @param {object} [data]
+			 * @param {string} [data.location]
+			 */
+			moveLocationFilterPage: function(data) {
+				data = data || {};
+				Move.post(this.baseUrl + "/" + LOCATION_FILTER_URL, _.extend(data, {
+					token: this.token
+				})).go();
+			},
+			/**
+			 * 신고페이지로 이동
+			 * @param [data]
+			 */
+			moveReportPage: function(data) {
+				data = data || {};
+				Move.post(this.host + REPORT_PAGE_URL, _.extend(data, {
+					token: this.token
+				})).go();
+			},
+			_headerReRender: function(e) {
+				if (device.os === 'iphone') {
+					this.header.updateZindex();
+				}
+			},
+			/**
+			 * 상품 액션 메뉴
+			 * @param productIdx
+			 */
+			showProductActionMenu: function(productIdx) {
+				/**
+				 * @type {actionMenus[]}
+				 */
+				var menus = [
+					{title: '판매완료', type: '', callback: 'View.updateSaleEnd'},
+					{title: '수정', type:'', callback: 'View.moveProductEdit'},
+					{title: '삭제', type:'', callback: 'View.removeProduct'}
+				];
+				noondateCommand.showMenu(menus)
+			},
+			/**
+			 * 히스토리 초기화 및 pop 처리
+			 */
+			moveClearBack: function() {
+				Move.history.clear();
+				Move.history.back();
+			}
+		});
+
+		return App;
+	});
+
+
+/**
+ * @module localMarket/Header
+ */
+define('localMarket/Header', ['baseview', 'underscore'],
+	/**
+	 * 중고마켓 Header
+	 * @param {View} BaseView
+	 * @param _ underscore
+	 * @returns {*}
+	 */
+	function(BaseView, _) {
+		var rootSelector = '#navigation_bar',
+			$rightTpl = $("#header-right-template"),
+			$headerRight = $(rootSelector + " .header-right"),
+			Header = BaseView.extend({
+				initialize: function() {
+					this.first = true;
+
+					this.render();
+				},
+				render: function() {
+
+					if (this.first) {
+						this.initRightAction();
+						this.zIndex = this.$el.css('z-index');
+						this.first = false;
+					}
+
+					return this;
+				},
+				events: {
+					'click .header-right': 'actionClick',
+					'click #back_button': 'back'
+				},
+				updateZindex: function() {
+					var zIndex = this.$el.css('z-index');
+					zIndex = zIndex > this.zIndex ? this.zIndex : parseInt(zIndex) + 1;
+					this.$el.css('z-index', zIndex);
+				},
+				back: function(e) {
+					this.trigger('back', e);
+				},
+				actionClick: function(e) {
+					this.trigger('actionClick', e);
+				},
+				initRightAction: function() {
+					var template = '';
+					if ($rightTpl.length > 0) {
+						template = _.template($rightTpl.html());
+					}
+
+					$headerRight.html(template);
+				}
+			});
+
+		return new Header({
+			el: rootSelector
+		});
+	});
+
+/**
+ * underscore mixin
+ * @param _
+ */
+function local_market_underscore_mixin(_) {
+	_.mixin({
+		/**
+		 * 숫자 포멧팅
+		 * @param {string|number} number
+		 * @param {number} [dec] 기본값 `0`
+		 * @param {string} [dsep] 기본값 `.`
+		 * @param {string} [tsep] 기본값 `,
+		 * @return {string}
+		 */
+		numberFormat: function(number, dec, dsep, tsep) {
+			if (isNaN(number) || number == null) {
+				return '';
+			}
+
+			if (typeof number === 'string') {
+				number = parseFloat(number);
+			}
+
+			number = number.toFixed(~~dec);
+			tsep = typeof tsep == 'string' ? tsep : ',';
+
+			var parts = number.split('.'),
+				fnums = parts[0],
+				decimals = parts[1] ? (dsep || '.') + parts[1] : '';
+
+			return fnums.replace(/(\d)(?=(?:\d{3})+$)/g, '$1' + tsep) + decimals;
+		}
+	});
+}
+			
+define('localMarket/View', ['underscore', 'device', 'jquery', 'baseview', 'noondateCommand', '@egjs/flicking', 'localMarket/App', 'localMarket/bookmarkButton', 'localMarket/commentWriter', 'localMarket/commentList'],
+	/**
+	 * @param _ underscore
+	 * @param device
+	 * @param $
+	 * @param {View} BaseView
+	 * @param {NoondateCommand} noondateCommand
+	 * @param {eg.Flicking} Flicking
+	 * @param {LocalMarketApp} App
+	 * @param {LocalMarketBookmarkButton} BookmarkButton
+	 * @param {LocalMarketCommentWriter} CommentWriter
+	 * @param {LocalMarketCommentList} CommentList
+	 * @returns {number}
+	 */
+	function(_, device, $, BaseView, noondateCommand, Flicking, App, BookmarkButton, CommentWriter, CommentList) {
+
+		return BaseView.extend({
+			initialize: function (data) {
+				var self = this,
+					isBookmarked = data.viewData.product['is_bookmarked'] || false;
+
+				this.first = true;
+
+				this.productIdx = data.viewData.product.idx;
+				this.app = new App(data);
+				this.header = this.app.header;
+				this.myProduct = data.viewData.myProduct;
+				/**
+				 * @type {LocalMarketApi}
+				 */
+				this.api = this.app.api;
+
+				// event proxy
+				this._headerActionClick = this._headerActionClick.bind(this);
+
+				this.render();
+
+				// 네비바 우측 클릭 액션
+				this.header.on('actionClick', this._headerActionClick);
+
+				// 상품이미지 flicking
+				this.imageFlicking = new Flicking('.image-flicking', {
+					duration: 300
+				});
+				this.$imageFlickingContainer = $('.image-flicking .eg-flick-container');
+				this.flickingZindex = this.$imageFlickingContainer.css('z-index');
+
+				this.$container = this.$el.find('.scroll-container');
+				// 아이폰 웹뷰 스크롤 이슈 처리
+				if (device.os === 'iphone') {
+					this.$container.on('scroll', function() {
+						var zIndex = self.$imageFlickingContainer.css('z-index');
+						zIndex = zIndex > self.flickingZindex ? self.flickingZindex : parseInt(zIndex) + 1;
+						self.$imageFlickingContainer.css('z-index', zIndex);
+					});
+				}
+
+				// bookmark 버튼 처리
+				this.bookmark = new BookmarkButton({
+					active: isBookmarked,
+					el: '.bnt-favorite',
+					first: false
+				});
+
+				this.bookmark.onToggle(function(active) {
+					var data = {
+						product_idx: self.productIdx,
+						active: active ? 1 : 0
+					};
+					self.api.setBookmark(data).then(function(res) {
+						return res;
+					}).always(function(res) {
+						self.bookmark.toggleComplete(res);
+					});
+				});
+
+
+				// 댓글 입력창
+				this.commentWriter = new CommentWriter({
+					el: '.comment-writer'
+				});
+
+				// 댓글입력시 처리
+				this.sendComment = this.sendComment.bind(this);
+				this.commentWriter.on('send', this.sendComment);
+
+				// 댓글 처리
+				this.$commentCount = this.$el.find('#comment-count');
+				this.commentList = new CommentList({
+					el: '.comment-group'
+				});
+				this.loadComment();
+				console.log(this);
+			},
+			render: function() {
+				if (this.first) {
+					this.first = false;
+				}
+			},
+			loadComment: function() {
+				var self = this,
+					data = { product_idx: this.productIdx };
+
+				this.api.comments(data)
+					.then(function(res) {
+						console.log(res);
+						if (res && res.code === 200) {
+							var commentCount = res.data['comment_count'] || 0;
+
+							self.$commentCount.text(commentCount);
+							self.commentRender(res.data.comments);
+						}
+					})
+					.always(function(res) {
+
+					});
+			},
+			commentRender: function(commentData) {
+				this.commentList.render(commentData);
+			},
+			sendComment: function(comment, writer) {
+				var self = this;
+				noondateCommand.showLoading();
+
+				this.api.createComment('comment', this.productIdx, comment)
+					.then(function(res) {
+						self.loadComment();
+						console.log(res);
+					})
+					.always(function() {
+						noondateCommand.hideLoading();
+					});
+			},
+			_headerActionClick: function(e) {
+				var $el = $(e.target);
+
+				if (this.myProduct) {
+					this.app.showProductActionMenu(this.productIdx);
+				} else {
+					this.app.moveReportPage();
+				}
+			}
+		});
+	});	
+	define('window', [], function() {
+		return window;
+	});
+
+	define('Move', [], function() {
+		return Move;
+	});
+
+	define('device', [], function() {
+		return {"language":"korean","os":"iphone","app_version":"4040066","os_version":"12.1","ios11":false};
+	});
+
+	require(["localMarket/View", 'window'], function(View, global) {
+		var viewData = {"product":{"idx":"13","title":"\ud53d\ub514\uc790\uc778 \ucea1\uccd0V3","price":"60000","location":"\uc11c\uc6b8\ud2b9\ubcc4\uc2dc \uac15\uc11c\uad6c","content":"\ud53d\ub514\uc790\uc778 \ucea1\uccd0 V3 \ube14\ub799 \ud310\ub9e4\ud569\ub2c8\ub2e4. \n\uac1c\ubd09 \ud6c4 2-3\ud68c \uc2dc\uc6a9\ud588\uace0 \uc0dd\ud65c \uae30\uc2a4 \uc5c6\uc2b5\ub2c8\ub2e4. \n\ud654\uace1\uc5ed\uc5d0\uc11c \uac70\ub798 \uac00\ub2a5\ud569\ub2c8\ub2e4. ","views":8,"seller_info":{"idx":"543852","nickname":"marco_park","gender":"0","info":"(\uc11c\uc6b8\/30\ub300 \ud6c4\ubc18\/UX\ub514\uc790\uc774\ub108)","thumbnail":"https:\/\/noondateseoul.s3.amazonaws.com\/uploads\/hh15\/a212\/fa78\/981a5a6102b139971c1def.jpg","real_verified":true,"fb_verified":true,"is_opened":false,"can_open":true},"is_bookmarked":false,"sale_status":"1","photo_urls":["https:\/\/noondateseoul.s3.amazonaws.com\/uploads\/hh5b\/67aa\/99e6\/bc611067e5c51c028acfa2.jpg","https:\/\/noondateseoul.s3.amazonaws.com\/uploads\/hh83\/5077\/093c\/7c3dd24eb1460a63238796.jpg","https:\/\/noondateseoul.s3.amazonaws.com\/uploads\/hh97\/541c\/bb14\/55b96f52aec4f98e8c9f1c.jpg"],"created_at":"1\ubd84 \uc804","badge":false},"myProduct":false} || {},
+			view = new View({
+				el: '.content-container',
+				token: '_63e8py701dni5qjnsq55hzy3hqfzy5mut6oghsze',
+				userIdx: '2701574',
+				host: 'http://fbting.mozzet.com/',
+				baseUrl: 'http://fbting.mozzet.com/local_market',
+				currentUrl: 'http://fbting.mozzet.com/local_market/detail',
+				device: {"language":"korean","os":"iphone","app_version":"4040066","os_version":"12.1","ios11":false},
+				viewData: viewData
+			});
+
+		global.View = view;
+	});
+
+	var onBackPressed = function() {
+		View.app.back();
+	}
+
+	$(document).ready(function() {
+
+	  	// ios fast click 처리
+	  	if (typeof FastClick == 'function') {
+			FastClick.attach(document.body);
+		}
+		$('.dropdown-toggle').dropdown();
+	});
+	</script></body></html>
